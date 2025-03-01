@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'csp',
     'relationship_app',
     'bookshelf',
     'django.contrib.admin',
@@ -127,5 +128,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "list_books"
 LOGOUT_REDIRECT_URL = "login"
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+DEBUG = False  # Set to False for production
+
+SECURE_BROWSER_XSS_FILTER = True  # Prevent XSS attacks
+X_FRAME_OPTIONS = 'DENY'  # Prevent Clickjacking
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-type sniffing
+
+
+CSRF_COOKIE_SECURE = True  # Enforce CSRF protection only over HTTPS
+SESSION_COOKIE_SECURE = True  # Send session cookies only over HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect all non-HTTPS requests to HTTPS
+
+CSP_DEFAULT_SRC = ("'self'",)  # Allow scripts and styles from the same origin
+CSP_SCRIPT_SRC = ("'self'", 'cdnjs.cloudflare.com')  # Allow only trusted scripts
+CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')  # Allow only trusted styles
+
+MIDDLEWARE = [
+    ...
+    'LibraryProject.middleware.ContentSecurityPolicyMiddleware',
+]
+
+
+
 
 

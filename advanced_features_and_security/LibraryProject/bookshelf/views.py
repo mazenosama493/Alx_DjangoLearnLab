@@ -5,6 +5,13 @@ from django.http import HttpResponseForbidden
 from .models import Article
 from django.shortcuts import render
 from .models import Book
+from django.db.models import Q
+
+def search_books(request):
+    title = request.GET.get("title", "")
+    books = Book.objects.filter(Q(title__icontains=title))
+    return render(request, "bookshelf/book_list.html", {"books": books})
+
 
 def book_list(request):
     books = Book.objects.all()  # Retrieve all books from the database
