@@ -172,6 +172,8 @@ X_FRAME_OPTIONS = "DENY"
 # Enable the browser’s built-in XSS filtering
 SECURE_BROWSER_XSS_FILTER = True
 
+# Ensure Django detects HTTPS requests behind a proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 
