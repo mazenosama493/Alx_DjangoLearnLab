@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import list_books, LibraryDetailView
+from .views import list_books
+from .views import LibraryDetailView
 from .views import home
 from django.contrib.auth import views as auth_views
 from . import views
