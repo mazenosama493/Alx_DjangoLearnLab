@@ -147,6 +147,31 @@ MIDDLEWARE = [
     ...
     'LibraryProject.middleware.ContentSecurityPolicyMiddleware',
 ]
+# Force all HTTP traffic to be redirected to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Enable HTTP Strict Transport Security (HSTS) for a year
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to all subdomains
+SECURE_HSTS_PRELOAD = True  # Enable preloading
+
+# Ensure CSRF and session cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Secure cookies to prevent transmission over HTTP
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Prevent browsers from guessing content types
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Prevent browsers from rendering pages in a frame (Clickjacking protection)
+X_FRAME_OPTIONS = "DENY"
+
+# Enable the browser’s built-in XSS filtering
+SECURE_BROWSER_XSS_FILTER = True
+
 
 
 
