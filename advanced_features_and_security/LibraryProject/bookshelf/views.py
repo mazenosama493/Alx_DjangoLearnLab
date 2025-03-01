@@ -6,6 +6,7 @@ from .models import Article
 from django.shortcuts import render
 from .models import Book
 from django.db.models import Q
+from .forms import ExampleForm
 
 def search_books(request):
     title = request.GET.get("title", "")
