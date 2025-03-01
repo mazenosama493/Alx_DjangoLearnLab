@@ -3,6 +3,13 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseForbidden
 from .models import Article
+from django.shortcuts import render
+from .models import Book
+
+def book_list(request):
+    books = Book.objects.all()  # Retrieve all books from the database
+    return render(request, 'bookshelf/book_list.html', {'books': books})
+
 
 @login_required
 @permission_required('your_app_name.can_view', raise_exception=True)
