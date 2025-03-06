@@ -26,6 +26,16 @@ SECRET_KEY = 'django-insecure-if5ndb#grnu1dt)0=aocc-lul)5ukvm-n=$rig-$tkm&16$lt9
 DEBUG = True
 
 ALLOWED_HOSTS = []
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Enables Token Authentication
+        'rest_framework.authentication.SessionAuthentication',  # Optional: Allows session-based auth
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Requires authentication for all views by default
+    ]
+}
+
 
 
 # Application definition
