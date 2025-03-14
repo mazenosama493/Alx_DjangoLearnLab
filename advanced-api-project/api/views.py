@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Book
 from .serializers import BookSerializer
+from django_filters import rest_framework as django_filters  
 
 # List all books (accessible to everyone)
 class ListView(generics.ListAPIView):
@@ -20,9 +21,7 @@ class ListView(generics.ListAPIView):
     search_fields = ["title", "author__name"]
 
     # Ordering: Users can order by title or publication_year
-    ordering_fields = ["title", "publication_year"]  # Allows read access for unauthenticated users
-
-# Retrieve a single book by ID (accessible to everyone)
+    ordering_fields = ["title", "publication_year"]
 class DetailView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
