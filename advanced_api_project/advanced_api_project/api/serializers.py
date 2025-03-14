@@ -1,7 +1,10 @@
 from rest_framework import serializers
 from .models import Author, Book
 import datetime
-
+"""
+    Serializer for Author model.
+    Includes a nested representation of related books using BookSerializer.
+    """
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book

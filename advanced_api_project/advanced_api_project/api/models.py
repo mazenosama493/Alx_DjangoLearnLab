@@ -1,5 +1,10 @@
 from django.db import models
 
+"""
+    Model representing an author.
+    Attributes:
+        name (str): Name of the author.
+    """
 class Author(models.Model):
     name = models.CharField(max_length=255)
 
