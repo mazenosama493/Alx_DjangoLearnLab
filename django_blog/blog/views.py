@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, UserUpdateForm
 
 def register_view(request):
     if request.method == "POST":
@@ -13,7 +13,7 @@ def register_view(request):
             return redirect("profile")  
     else:
         form = CustomUserCreationForm()
-    return render(request, "auth/register.html", {"form": form})
+    return render(request, "blog/register.html", {"form": form})
 
 def login_view(request):
     if request.method == "POST":
@@ -24,7 +24,7 @@ def login_view(request):
             return redirect("profile")  
     else:
         form = AuthenticationForm()
-    return render(request, "auth/login.html", {"form": form})
+    return render(request, "blog/login.html", {"form": form})
 
 def logout_view(request):
     logout(request)
@@ -32,7 +32,7 @@ def logout_view(request):
 
 @login_required
 def profile_view(request):
-    return render(request, "auth/profile.html", {"user": request.user})
+    return render(request, "blog/profile.html", {"user": request.user})
 
 @login_required
 def edit_profile_view(request):
@@ -43,5 +43,5 @@ def edit_profile_view(request):
             return redirect("profile")
     else:
         form = UserUpdateForm(instance=request.user)
-    return render(request, "auth/edit_profile.html", {"form": form})
+    return render(request, "blog/edit_profile.html", {"form": form})
 
