@@ -16,7 +16,11 @@ urlpatterns = [
     path("post/new/", PostCreateView.as_view(), name="post-create"),  # Create a new post
     path("post/<int:pk>/update/", PostUpdateView.as_view(), name="post-update"),  # Update post
     path("post/<int:pk>/delete/", PostDeleteView.as_view(), name="post-delete"),  # Delete post
+    path("post/<int:post_id>/comments/new/", add_comment, name="add-comment"),
+    path("comment/<int:comment_id>/edit/", edit_comment, name="edit-comment"),
+    path("comment/<int:comment_id>/delete/", delete_comment, name="delete-comment"),
 ]
 
 
-]
+
+
