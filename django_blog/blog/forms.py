@@ -20,8 +20,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["title", "content", "tags"]
-        TagWidgets = {
-            "tags": TagWidget(attrs={"placeholder": "Add tags separated by commas"}),
+        widgets = {
+            "tags": TagWidget(),
         }
 
 
