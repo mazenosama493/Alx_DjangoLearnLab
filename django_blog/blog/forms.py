@@ -21,7 +21,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ["title", "content", "tags"]
         widgets = {
-            "content": forms.Textarea(attrs={"rows": 5}),
+            "tags": TagWidget(attrs={"placeholder": "Add tags separated by commas"}),
         }
 
 
