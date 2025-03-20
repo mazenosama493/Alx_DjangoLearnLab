@@ -15,6 +15,24 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Comment, Post
 from .forms import CommentForm
+from django.shortcuts import render
+from django.views.generic import ListView
+from django.db.models import Q
+from .models import Post
+
+class PostSearchView(ListView):
+    model = Post
+    template_name = "blog/post_search.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Post.objects.filter(
+                Q(title__icontains=query) | Q(content__icontains=query) | Q(tags__name__icontains=query)
+            ).distinct()
+        return Post.objects.none()
+
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
