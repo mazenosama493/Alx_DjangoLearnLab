@@ -15,7 +15,14 @@ from django.shortcuts import get_object_or_404
 from .models import Post, Like
 from .serializers import LikeSerializer
 from notifications.models import Notification
+class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return get_object_or_404(Post, pk=pk)  # Ensure correct object retrieval
 
 CustomUser = get_user_model()
 class LikePostView(generics.CreateAPIView):
