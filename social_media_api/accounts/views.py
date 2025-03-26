@@ -19,7 +19,7 @@ class UserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class FollowUserView(APIView):
+class follow_user(APIView):
     """Allow an authenticated user to follow another user."""
     permission_classes = [permissions.IsAuthenticated]
 
@@ -31,7 +31,7 @@ class FollowUserView(APIView):
         except CustomUser.DoesNotExist:
             return Response({"error": "User not found."}, status=HTTP_400_BAD_REQUEST)
 
-class UnfollowUserView(APIView):
+class unfollow_user(APIView):
     """Allow an authenticated user to unfollow another user."""
     permission_classes = [permissions.IsAuthenticated]
 
