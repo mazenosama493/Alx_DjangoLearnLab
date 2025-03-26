@@ -89,7 +89,8 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
