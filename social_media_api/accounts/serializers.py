@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'bio', 'profile_picture', 'followers']
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)  # Ensuring password is not returned in response
+    password = serializers.CharField()  # Ensuring password is not returned in response
 
     class Meta:
         model = User
