@@ -3,6 +3,19 @@ from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .models import Post
+from .serializers import PostSerializer
+
+class UserFeedView(generics.ListAPIView):
+    """Return posts from users that the authenticated user follows."""
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Post.objects.filter(author__in=self.request.user.following.all()).order_by('-created_at')
+
 
 class PostPagination(PageNumberPagination):
     page_size = 10
