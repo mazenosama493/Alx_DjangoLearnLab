@@ -51,7 +51,7 @@ class LikePostView(generics.CreateAPIView):
 
     def post(self, request, pk):
         """Handle liking a post."""
-        post = get_object_or_404(Post, pk=pk)  # ✅ Correct usage
+        post = generics.get_object_or_404(Post, pk=pk)  # ✅ Correct usage
         like, created = Like.objects.get_or_create(user=request.user, post=post)
 
         if not created:
@@ -75,7 +75,7 @@ class UnlikePostView(generics.DestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         """Handle unliking a post properly."""
-        post = get_object_or_404(Post, pk=kwargs.get("pk"))  # ✅ Correct usage
+        post = generics.get_object_or_404(Post, pk=kwargs.get("pk"))  # ✅ Correct usage
         like = Like.objects.filter(user=request.user, post=post).first()
 
         if not like:
